@@ -1,3 +1,4 @@
+import 'package:ae_clone/controller/webviewmenu_controller.dart';
 import 'package:ae_clone/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -21,21 +22,25 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()..loadRequest(Uri.parse(widget.url));
+    controller = WebViewController()
+      ..loadRequest(Uri.parse(widget.url))
+      // ignore: avoid_single_cascade_in_expression_statements
+      ..setJavaScriptMode(JavaScriptMode.unrestricted);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            widget.title,
-            style: const TextStyle(fontSize: 16),
-          ),
-          backgroundColor: MyColors.prColor,
-        ),
-        body: WebViewWidget(
-          controller: controller,
-        ));
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: MyColors.prColor,
+        actions: [
+          WebViewMenu(controller: controller)
+        ],
+      ),
+      body: WebViewWidget(
+        controller: controller,
+      ),
+    );
   }
 }

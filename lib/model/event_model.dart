@@ -19,6 +19,7 @@ class EventModel {
     thumb_url = json['thumb_url'];
     event_url = json['event_url'];
     start_time_display = json['start_time_display'];
+    
     location = json['location'];
   }
 }
