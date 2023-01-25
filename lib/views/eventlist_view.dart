@@ -78,8 +78,6 @@ class EventList extends StatelessWidget {
                   onPressed: () {
                     Get.to(() => WebViewPage(
                         url: eventListController.eventList[index].event_url
-                            .toString(),
-                        title: eventListController.eventList[index].eventname
                             .toString()));
                     // print('Ticket Button Clicked');
                   },

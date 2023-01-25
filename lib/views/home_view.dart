@@ -1,5 +1,6 @@
 import 'package:ae_clone/controller/category_controller.dart';
-import 'package:ae_clone/views/evntlist_view.dart';
+import 'package:ae_clone/views/eventlist_view.dart';
+import 'package:ae_clone/views/mobilescanner_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -18,8 +19,16 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Event Category"),
         backgroundColor: MyColors.prColor,
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => const MobileScannerPage());
+              },
+              icon: const Icon(Icons.qr_code_scanner))
+        ],
       ),
       backgroundColor: MyColors.bgColor,
+      // body: const MobileScannerPage(),
       body: SizedBox(
           width: double.infinity,
           height: double.infinity,

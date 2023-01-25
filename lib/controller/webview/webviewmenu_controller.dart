@@ -24,9 +24,10 @@ class _WebViewMenuState extends State<WebViewMenu> {
   final cookieManager = WebViewCookieManager();
 
   Future<void> _listCookies(WebViewController controller) async {
-    final String cookies = await controller.runJavaScriptReturningResult('document.cookie') as String;
+    final String cookies = await controller
+        .runJavaScriptReturningResult('document.cookie') as String;
 
-    if(!mounted) return;
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -37,10 +38,9 @@ class _WebViewMenuState extends State<WebViewMenu> {
 
   Future<void> _onAddCookies(WebViewController controller) async {
     await controller.runJavaScript(
-      'document.cookie = "PHPSESSID=4oira4g2tg4ok6ie196agfpjcd"'
-    );
+        'document.cookie = "PHPSESSID=4oira4g2tg4ok6ie196agfpjcd"');
 
-    if(!mounted) return;
+    if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(_listCookies(controller).toString()),
@@ -52,12 +52,12 @@ class _WebViewMenuState extends State<WebViewMenu> {
     await cookieManager.setCookie(
       const WebViewCookie(
         name: 'PHPSESSID',
-        value: '4oira4g2tg4ok6ie196agfpjcd', 
+        value: '4oira4g2tg4ok6ie196agfpjcd',
         domain: 'https://allevents.in/',
       ),
     );
 
-    if(!mounted) return;
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -68,10 +68,9 @@ class _WebViewMenuState extends State<WebViewMenu> {
 
   Future<void> _onRemoveCookie(WebViewController controller) async {
     await controller.runJavaScript(
-      'document.cookie = "PHPSESSID=4oira4g2tg4ok6ie196agfpjcd"'
-    );
+        'document.cookie = "PHPSESSID=4oira4g2tg4ok6ie196agfpjcd"');
 
-    if(!mounted) return;
+    if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

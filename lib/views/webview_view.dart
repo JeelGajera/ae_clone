@@ -1,4 +1,5 @@
-import 'package:ae_clone/controller/webviewmenu_controller.dart';
+import 'package:ae_clone/controller/webview/webnavigation_control.dart';
+import 'package:ae_clone/controller/webview/webviewmenu_controller.dart';
 import 'package:ae_clone/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -6,9 +7,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 // ignore: must_be_immutable
 class WebViewPage extends StatefulWidget {
   final String url;
-  final String title;
 
-  const WebViewPage({Key? key, required this.url, required this.title})
+  const WebViewPage({Key? key, required this.url})
       : super(key: key);
 
   @override
@@ -26,17 +26,19 @@ class _WebViewPageState extends State<WebViewPage> {
       ..loadRequest(Uri.parse(widget.url))
       // ignore: avoid_single_cascade_in_expression_statements
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
+    // ignore: avoid_single_cascade_in_expression_statements
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: const Text("Allevents.in"),
         backgroundColor: MyColors.prColor,
         actions: [
+          NavigationControls(controller: controller),
           WebViewMenu(controller: controller)
-        ],
+          ],
       ),
       body: WebViewWidget(
         controller: controller,
